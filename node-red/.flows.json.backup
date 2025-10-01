@@ -1,0 +1,915 @@
+[
+    {
+        "id": "0bab933a984d5280",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "97e7cc7bb4ae7f66",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3f3636a5ba47b07d",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3de83e8de8286eab",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8ede9c3f509e50a1",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "85e578e9ce379a5c",
+        "type": "ui_spacer",
+        "z": "0bab933a984d5280",
+        "name": "spacer",
+        "group": "8ede9c3f509e50a1",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ba8f1ad16f39a73e",
+        "type": "ui_tab",
+        "name": "Smart Room",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false,
+        "info": "[\n    {\n        \"id\": \"inject_greeting\",\n        \"type\": \"inject\",\n        \"z\": \"flow1\",\n        \"name\": \"Inject Greeting on start\",\n        \"props\": [],\n        \"repeat\": \"\",\n        \"crontab\": \"\",\n        \"once\": true,\n        \"onceDelay\": 0.1,\n        \"topic\": \"\",\n        \"payloadType\": \"date\",\n        \"x\": 140,\n        \"y\": 80,\n        \"wires\": [[\"function_greeting\"]]\n    },\n    {\n        \"id\": \"function_greeting\",\n        \"type\": \"function\",\n        \"z\": \"flow1\",\n        \"name\": \"Greeting Function\",\n        \"func\": \"let hour = new Date().getHours();\\nlet greeting = \\\"Hello\\\";\\nif(hour < 12) greeting = \\\"Good morning 🌅\\\";\\nelse if(hour < 18) greeting = \\\"Good afternoon ☀️\\\";\\nelse greeting = \\\"Good evening 🌙\\\";\\nmsg.payload = greeting + \\\", Mouez 👋\\\";\\nreturn msg;\",\n        \"outputs\": 1,\n        \"noerr\": 0,\n        \"initialize\": \"\",\n        \"finalize\": \"\",\n        \"libs\": [],\n        \"x\": 340,\n        \"y\": 80,\n        \"wires\": [[\"ui_text_greeting\"]]\n    },\n    {\n        \"id\": \"ui_text_greeting\",\n        \"type\": \"ui_text\",\n        \"z\": \"flow1\",\n        \"group\": \"group_greeting\",\n        \"order\": 0,\n        \"width\": 0,\n        \"height\": 0,\n        \"name\": \"Greeting Text\",\n        \"label\": \"\",\n        \"format\": \"{{msg.payload}}\",\n        \"layout\": \"row-spread\",\n        \"x\": 550,\n        \"y\": 80,\n        \"wires\": []\n    },\n    {\n        \"id\": \"inject_weather\",\n        \"type\": \"inject\",\n        \"z\": \"flow1\",\n        \"name\": \"Inject Weather (static)\",\n        \"props\": [{\"p\":\"payload\"}],\n        \"repeat\": \"\",\n        \"crontab\": \"\",\n        \"once\": true,\n        \"onceDelay\": 1,\n        \"topic\": \"\",\n        \"payload\": \"🌤 Sousse Weather: 30°C, Clear sky\",\n        \"payloadType\": \"str\",\n        \"x\": 140,\n        \"y\": 140,\n        \"wires\": [[\"ui_text_weather\"]]\n    },\n    {\n        \"id\": \"ui_text_weather\",\n        \"type\": \"ui_text\",\n        \"z\": \"flow1\",\n        \"group\": \"group_weather\",\n        \"order\": 0,\n        \"width\": 0,\n        \"height\": 0,\n        \"name\": \"Weather Text\",\n        \"label\": \"\",\n        \"format\": \"{{msg.payload}}\",\n        \"layout\": \"row-spread\",\n        \"x\": 550,\n        \"y\": 140,\n        \"wires\": []\n    },\n    {\n        \"id\": \"inject_room\",\n        \"type\": \"inject\",\n        \"z\": \"flow1\",\n        \"name\": \"Inject Room Sensor Data\",\n        \"props\": [{\"p\":\"payload\"}],\n        \"repeat\": \"\",\n        \"crontab\": \"\",\n        \"once\": true,\n        \"onceDelay\": 2,\n        \"topic\": \"\",\n        \"payload\": \"{\\\"temperature\\\":24,\\\"humidity\\\":55,\\\"pressure\\\":1012}\",\n        \"payloadType\": \"json\",\n        \"x\": 160,\n        \"y\": 200,\n        \"wires\": [[\"function_room\"]]\n    },\n    {\n        \"id\": \"function_room\",\n        \"type\": \"function\",\n        \"z\": \"flow1\",\n        \"name\": \"Format Room Data\",\n        \"func\": \"let t = msg.payload.temperature;\\nlet h = msg.payload.humidity;\\nlet p = msg.payload.pressure;\\nmsg.payload = `🏠 Room Conditions:\\\\n🌡 Temp: ${t}°C\\\\n💧 Humidity: ${h}%\\\\n📈 Pressure: ${p} hPa`;\\nreturn msg;\",\n        \"outputs\": 1,\n        \"noerr\": 0,\n        \"x\": 390,\n        \"y\": 200,\n        \"wires\": [[\"ui_text_room\"]]\n    },\n    {\n        \"id\": \"ui_text_room\",\n        \"type\": \"ui_text\",\n        \"z\": \"flow1\",\n        \"group\": \"group_room\",\n        \"order\": 0,\n        \"width\": 0,\n        \"height\": 0,\n        \"name\": \"Room Data Text\",\n        \"label\": \"\",\n        \"format\": \"{{msg.payload}}\",\n        \"layout\": \"row-spread\",\n        \"x\": 580,\n        \"y\": 200,\n        \"wires\": []\n    },\n    {\n        \"id\": \"group_greeting\",\n        \"type\": \"ui_group\",\n        \"name\": \"Greeting\",\n        \"tab\": \"tab_dashboard\",\n        \"order\": 1,\n        \"disp\": true,\n        \"width\": \"6\",\n        \"collapse\": false\n    },\n    {\n        \"id\": \"group_weather\",\n        \"type\": \"ui_group\",\n        \"name\": \"Outside Weather\",\n        \"tab\": \"tab_dashboard\",\n        \"order\": 2,\n        \"disp\": true,\n        \"width\": \"6\",\n        \"collapse\": false\n    },\n    {\n        \"id\": \"group_room\",\n        \"type\": \"ui_group\",\n        \"name\": \"Room Sensors\",\n        \"tab\": \"tab_dashboard\",\n        \"order\": 3,\n        \"disp\": true,\n        \"width\": \"6\",\n        \"collapse\": false\n    },\n    {\n        \"id\": \"tab_dashboard\",\n        \"type\": \"ui_tab\",\n        \"name\": \"Smart Room Dashboard\",\n        \"icon\": \"dashboard\",\n        \"order\": 1,\n        \"disabled\": false,\n        \"hidden\": false\n    }\n]\n"
+    },
+    {
+        "id": "575f3e6d507c7097",
+        "type": "ui_group",
+        "name": "Greeting",
+        "tab": "ba8f1ad16f39a73e",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "03222716f0fb8b4f",
+        "type": "ui_group",
+        "name": "Outside Weather",
+        "tab": "ba8f1ad16f39a73e",
+        "order": 2,
+        "disp": true,
+        "width": 7,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "17b04bbb64591ecf",
+        "type": "ui_group",
+        "name": "Room",
+        "tab": "ba8f1ad16f39a73e",
+        "order": 3,
+        "disp": true,
+        "width": 15,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "14b04371ad6220a3",
+        "type": "ui_spacer",
+        "z": "0bab933a984d5280",
+        "name": "spacer",
+        "group": "17b04bbb64591ecf",
+        "order": 1,
+        "width": 15,
+        "height": 1
+    },
+    {
+        "id": "tab_dashboard",
+        "type": "ui_tab",
+        "name": "Smart Room Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "group_greeting",
+        "type": "ui_group",
+        "name": "Greeting",
+        "tab": "tab_dashboard",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "group_weather",
+        "type": "ui_group",
+        "name": "Outside Weather",
+        "tab": "tab_dashboard",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "group_room",
+        "type": "ui_group",
+        "name": "Room Sensors",
+        "tab": "tab_dashboard",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "53319f359408d9b7",
+        "type": "mqtt-broker",
+        "name": "Local MQTT Broker",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "f0854e1312c62c37",
+        "type": "inject",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "b6e71722f1b604a7"
+            ]
+        ]
+    },
+    {
+        "id": "b6e71722f1b604a7",
+        "type": "http request",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8000/sensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 550,
+        "y": 240,
+        "wires": [
+            [
+                "fec5da6597546f5c"
+            ]
+        ]
+    },
+    {
+        "id": "fec5da6597546f5c",
+        "type": "json",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "0f6ff2aa6e839ce0"
+            ]
+        ]
+    },
+    {
+        "id": "42f88248394d7cbe",
+        "type": "inject",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "085bbf9994108896"
+            ]
+        ]
+    },
+    {
+        "id": "085bbf9994108896",
+        "type": "function",
+        "z": "0bab933a984d5280",
+        "name": "function 1",
+        "func": "let hour = new Date().getHours();\nlet greeting = \"Hello\";\nif (hour < 12) greeting = \"Good morning 🌅\";\nelse if (hour < 18) greeting = \"Good afternoon ☀️\";\nelse greeting = \"Good evening 🌙\";\n\nmsg.payload = greeting + \", Mouez 👋\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 120,
+        "wires": [
+            [
+                "ebae0cf02024e0f1"
+            ]
+        ]
+    },
+    {
+        "id": "c68d27a8ab1591a9",
+        "type": "inject",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 400,
+        "wires": [
+            [
+                "870b7641e201ad56"
+            ]
+        ]
+    },
+    {
+        "id": "870b7641e201ad56",
+        "type": "http request",
+        "z": "0bab933a984d5280",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Sousse,TN&appid=YOUR_API_KEY&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 400,
+        "wires": [
+            [
+                "c9ec8bbb3a4d6edb"
+            ]
+        ]
+    },
+    {
+        "id": "c9ec8bbb3a4d6edb",
+        "type": "function",
+        "z": "0bab933a984d5280",
+        "name": "function 2",
+        "func": "let weather = msg.payload;\nlet data = JSON.parse(weather);\n\nlet temp = data.main.temp;\nlet city = data.name;\nlet desc = data.weather[0].description;\n\nmsg.payload = `🌤 ${city} Weather: ${temp}°C, ${desc}`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "b71ed970033a29bf"
+            ]
+        ]
+    },
+    {
+        "id": "ebae0cf02024e0f1",
+        "type": "ui_template",
+        "z": "0bab933a984d5280",
+        "group": "575f3e6d507c7097",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"text-align:center; font-size: 2em; padding: 20px; font-weight: bold; color: #2c3e50;\">\n    {{msg.payload}}\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 660,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b71ed970033a29bf",
+        "type": "ui_template",
+        "z": "0bab933a984d5280",
+        "group": "03222716f0fb8b4f",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"text-align:center; font-size: 1.5em; padding: 10px; color: #2980b9;\">\n    <span>🌤️</span> {{msg.payload}}\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 880,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f6ff2aa6e839ce0",
+        "type": "ui_template",
+        "z": "0bab933a984d5280",
+        "group": "17b04bbb64591ecf",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div\n    style=\"border: 2px solid #3498db; border-radius: 10px; padding: 15px; background: #ecf0f1; font-family: Arial, sans-serif;\">\n    <h3 style=\"text-align:center; color:#2980b9;\">🏠 Room Conditions</h3>\n    <pre style=\"font-size: 1.2em; white-space: pre-wrap;\">{{msg.payload}}</pre>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 980,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b6ea7dcb1359d02a",
+        "type": "inject",
+        "z": "97e7cc7bb4ae7f66",
+        "name": "Inject Greeting on start",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "c55adfbe0a3c177a"
+            ]
+        ]
+    },
+    {
+        "id": "c55adfbe0a3c177a",
+        "type": "function",
+        "z": "97e7cc7bb4ae7f66",
+        "name": "Greeting Function",
+        "func": "let hour = new Date().getHours();\nlet greeting = \"Hello\";\nif(hour < 12) greeting = \"Good morning 🌅\";\nelse if(hour < 18) greeting = \"Good afternoon ☀️\";\nelse greeting = \"Good evening 🌙\";\nmsg.payload = greeting + \", Mouez 👋\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "9108a8f7086651ac"
+            ]
+        ]
+    },
+    {
+        "id": "9108a8f7086651ac",
+        "type": "ui_text",
+        "z": "97e7cc7bb4ae7f66",
+        "group": "group_greeting",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Greeting Text",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "18c60a5802cd1948",
+        "type": "inject",
+        "z": "97e7cc7bb4ae7f66",
+        "name": "Inject Weather (static)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 1,
+        "topic": "",
+        "payload": "🌤 Sousse Weather: 30°C, Clear sky",
+        "payloadType": "str",
+        "x": 500,
+        "y": 300,
+        "wires": [
+            [
+                "6587f8c2ced805ae"
+            ]
+        ]
+    },
+    {
+        "id": "6587f8c2ced805ae",
+        "type": "ui_text",
+        "z": "97e7cc7bb4ae7f66",
+        "group": "group_weather",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Weather Text",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a44ddf16d27b81de",
+        "type": "inject",
+        "z": "97e7cc7bb4ae7f66",
+        "name": "Inject Room Sensor Data",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 2,
+        "topic": "",
+        "payload": "{\"temperature\":24,\"humidity\":55,\"pressure\":1012}",
+        "payloadType": "json",
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "0a75401c8a4356f7"
+            ]
+        ]
+    },
+    {
+        "id": "0a75401c8a4356f7",
+        "type": "function",
+        "z": "97e7cc7bb4ae7f66",
+        "name": "Format Room Data",
+        "func": "let t = msg.payload.temperature;\nlet h = msg.payload.humidity;\nlet p = msg.payload.pressure;\nmsg.payload = `🏠 Room Conditions:\\n🌡 Temp: ${t}°C\\n💧 Humidity: ${h}%\\n📈 Pressure: ${p} hPa`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 360,
+        "wires": [
+            [
+                "c11aac9410064acf"
+            ]
+        ]
+    },
+    {
+        "id": "c11aac9410064acf",
+        "type": "ui_text",
+        "z": "97e7cc7bb4ae7f66",
+        "group": "group_room",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Room Data Text",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 940,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "ebc9cc3c6a154dd7",
+        "type": "inject",
+        "z": "3f3636a5ba47b07d",
+        "name": "Inject Greeting on start",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 60,
+        "wires": [
+            [
+                "fcf165f9b8621f2c"
+            ]
+        ]
+    },
+    {
+        "id": "fcf165f9b8621f2c",
+        "type": "function",
+        "z": "3f3636a5ba47b07d",
+        "name": "Greeting Function",
+        "func": "let hour = new Date().getHours();\nlet greeting = \"Hello\";\nif(hour < 12) greeting = \"Good morning 🌅\";\nelse if(hour < 18) greeting = \"Good afternoon ☀️\";\nelse greeting = \"Good evening 🌙\";\nmsg.payload = greeting + \", Mouez 👋\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 60,
+        "wires": [
+            [
+                "9ae33d1da1bbb9c6"
+            ]
+        ]
+    },
+    {
+        "id": "9ae33d1da1bbb9c6",
+        "type": "ui_text",
+        "z": "3f3636a5ba47b07d",
+        "group": "group_greeting",
+        "order": 0,
+        "width": 6,
+        "height": 2,
+        "name": "Greeting Text",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 1170,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a64f8664c0b52117",
+        "type": "inject",
+        "z": "3f3636a5ba47b07d",
+        "name": "Poll Sensor every 10s",
+        "props": [],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.5,
+        "topic": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "a0e03c51aff339e1"
+            ]
+        ]
+    },
+    {
+        "id": "a0e03c51aff339e1",
+        "type": "http request",
+        "z": "3f3636a5ba47b07d",
+        "name": "HTTP GET Sensor Data",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8000/sensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "fd7d12d6eabefd24"
+            ]
+        ]
+    },
+    {
+        "id": "fd7d12d6eabefd24",
+        "type": "function",
+        "z": "3f3636a5ba47b07d",
+        "name": "Split Sensor Data",
+        "func": "var temp = msg.payload.temperature;\nvar hum = msg.payload.humidity;\nvar pres = msg.payload.pressure;\n\nvar msg1 = {payload: temp};\nvar msg2 = {payload: hum};\nvar msg3 = {payload: pres};\nreturn [msg1, msg2, msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 1190,
+        "y": 140,
+        "wires": [
+            [
+                "61f4fc7f73e88326"
+            ],
+            [
+                "19b327a2f9a9a7ad"
+            ],
+            [
+                "94d9b8f61dd834ef"
+            ]
+        ]
+    },
+    {
+        "id": "61f4fc7f73e88326",
+        "type": "ui_template",
+        "z": "3f3636a5ba47b07d",
+        "group": "group_room",
+        "name": "Temperature Box",
+        "order": 0,
+        "width": 6,
+        "height": 3,
+        "format": "<div style=\"border: 2px solid #e67e22; border-radius: 12px; padding: 20px; font-size: 2em; text-align: center; background: #d35400; color: white;\">\n  🌡 Temperature: {{msg.payload}} °C\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1450,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19b327a2f9a9a7ad",
+        "type": "ui_template",
+        "z": "3f3636a5ba47b07d",
+        "group": "group_room",
+        "name": "Humidity Box",
+        "order": 1,
+        "width": 6,
+        "height": 3,
+        "format": "<div style=\"border: 2px solid #2980b9; border-radius: 12px; padding: 20px; font-size: 2em; text-align: center; background: #2471a3; color: white;\">\n  💧 Humidity: {{msg.payload}} %\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1450,
+        "y": 190,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94d9b8f61dd834ef",
+        "type": "ui_template",
+        "z": "3f3636a5ba47b07d",
+        "group": "group_room",
+        "name": "Pressure Box",
+        "order": 2,
+        "width": 6,
+        "height": 3,
+        "format": "<div style=\"border: 2px solid #27ae60; border-radius: 12px; padding: 20px; font-size: 2em; text-align: center; background: #229954; color: white;\">\n  📈 Pressure: {{msg.payload}} hPa\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1450,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "283ac777f6102b7a",
+        "type": "inject",
+        "z": "3f3636a5ba47b07d",
+        "name": "Fetch live weather every 10min",
+        "props": [],
+        "repeat": "600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 2,
+        "topic": "",
+        "payloadType": "date",
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "cf629c44f5ba75ca"
+            ]
+        ]
+    },
+    {
+        "id": "cf629c44f5ba75ca",
+        "type": "http request",
+        "z": "3f3636a5ba47b07d",
+        "name": "OpenWeatherMap API",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Sousse,TN&appid=ee088e27841e2adf1abb6a73fd21744e&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            [
+                "442c459f8c86366d"
+            ]
+        ]
+    },
+    {
+        "id": "442c459f8c86366d",
+        "type": "function",
+        "z": "3f3636a5ba47b07d",
+        "name": "Format Weather Data",
+        "func": "let w = msg.payload;\nif(!w || !w.main) {\n  msg.payload = \"Weather data unavailable\";\n  return msg;\n}\nlet desc = w.weather[0].description;\nlet temp = w.main.temp;\nlet humidity = w.main.humidity;\nlet city = w.name;\n\nmsg.payload = `🌤 ${city}: ${temp}°C, ${desc}, Humidity: ${humidity}%`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1270,
+        "y": 200,
+        "wires": [
+            [
+                "1855ba841357b840"
+            ]
+        ]
+    },
+    {
+        "id": "1855ba841357b840",
+        "type": "ui_text",
+        "z": "3f3636a5ba47b07d",
+        "group": "group_weather",
+        "order": 1,
+        "width": 6,
+        "height": 2,
+        "name": "Live Weather Text",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 1520,
+        "y": 200,
+        "wires": []
+    }
+]
